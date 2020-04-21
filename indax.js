@@ -1,9 +1,9 @@
 const express = require("express")
 const app = express()
 
-app.git("/",function(req,res){
+app.get("/",function(req,res){
 
-    app.send("Welcome")
+    res.send("Welcome" + req.query.name)
 })
 app.listen("1234")
 console.log("server start")
