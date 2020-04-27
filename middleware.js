@@ -1,19 +1,19 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 
-app.use(function(req,res,next){
-console.log(req.ip)
-console.log(req.headers)
-console.log(req.params)
-console.log(req.hostname)
-console.log(req.query)
-console.log(req.protocol)
-next()
+app.use(express.json());
+app.use(express.urlencoded());
 
-})
-app.get("/books",function(req,res){
-res.json("books data in ojeact")
+const chats = [];
 
-})
-app.listen(8520)
-console.log("server start")
+app.get("/chats", function (req, res, next) {
+  res.json(chats);
+});
+
+app.post("/addChat", function (req, res) {
+  chats.push(req.body);
+  res.send("chat added successfuly");
+});
+
+app.listen(1234);
+console.log("server start");
